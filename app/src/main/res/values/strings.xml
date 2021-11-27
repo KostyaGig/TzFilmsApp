@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">TzFilmsApp</string>
+    <string name="no_connection_text">No connection</string>
+    <string name="some_went_wrong_text">Some went wrong</string>
+    <string name="main_text">Главная</string>
 </resources>

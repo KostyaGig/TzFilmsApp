@@ -8,7 +8,7 @@ interface MapperCloudToDataFilm : Abstract.FilmMapper<DataFilm> {
 
         override fun map(
             id: Int,
-            localized_name: String,
+            localizedName: String,
             name: String,
             year: Int,
             rating: Float,
@@ -17,7 +17,7 @@ interface MapperCloudToDataFilm : Abstract.FilmMapper<DataFilm> {
             genres: List<String>
         ): DataFilm
             = DataFilm.Base(
-                id, localized_name, name, year, rating, imageUrl, description, genres
+                id, localizedName, name, year, rating, imageUrl, description, genres
             )
 
     }

@@ -3,10 +3,17 @@ package com.zinoview.tzfilmsapp.presentation.state
 import android.widget.ImageView
 import android.widget.TextView
 import com.squareup.picasso.Picasso
+import com.zinoview.tzfilmsapp.core.Abstract
+import com.zinoview.tzfilmsapp.presentation.ClickedFilm
+import com.zinoview.tzfilmsapp.presentation.MapperToClickedFilm
 import com.zinoview.tzfilmsapp.presentation.adapter.Bind
+import com.zinoview.tzfilmsapp.presentation.adapter.OnItemClickListener
 import com.zinoview.tzfilmsapp.presentation.adapter.SameItem
 
-sealed class UiStateFilm : Bind, SameItem {
+sealed class UiStateFilm : Bind, SameItem, Abstract.Film {
+
+    override fun <T> map(mapper: Abstract.FilmMapper<T>): T
+        = mapper.map(-1,"","",-1,-1.0f,"","", emptyList())
 
     override fun bind(filmImage: ImageView, filmName: TextView)
         = Unit
@@ -23,6 +30,9 @@ sealed class UiStateFilm : Bind, SameItem {
 
     override fun same(name: String, description: String): Boolean
         = false
+
+    open fun onItemClick(onItemClickListener: OnItemClickListener<ClickedFilm>)
+        = Unit
 
     object Progress : UiStateFilm()
 
@@ -54,6 +64,12 @@ sealed class UiStateFilm : Bind, SameItem {
 
         override fun same(name: String, description: String): Boolean
             = this.shortName == name && this.description == description
+
+        override fun <T> map(mapper: Abstract.FilmMapper<T>): T
+            = mapper.map(id,localized_name,name, year, rating, imageUrl, description, genres)
+
+        override fun onItemClick(onItemClickListener: OnItemClickListener<ClickedFilm>)
+            = onItemClickListener.onItemClick(map(MapperToClickedFilm.Base()))
     }
 
     class Failure(

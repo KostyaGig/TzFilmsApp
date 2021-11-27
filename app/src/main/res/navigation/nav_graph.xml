@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/nav_graph.xml"
+    android:id="@+id/nav_graph"
     app:startDestination="@id/filmsFragment"
     xmlns:tools="http://schemas.android.com/tools">
 
@@ -9,5 +9,21 @@
         android:id="@+id/filmsFragment"
         android:name="com.zinoview.tzfilmsapp.presentation.fragment.FilmsFragment"
         android:label="FilmsFragment"
-        tools:layout="@layout/films_fragment"/>
+        tools:layout="@layout/films_fragment">
+        <action
+            android:id="@+id/action_filmsFragment_to_detailFilmFragment"
+            app:destination="@id/detailFilmFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/detailFilmFragment"
+        android:name="com.zinoview.tzfilmsapp.presentation.fragment.DetailFilmFragment"
+        android:label="DetailFilmFragment"
+        tools:layout="@layout/detail_film_fragment"
+        >
+        <action
+            android:id="@+id/action_detailFilmFragment_to_filmsFragment"
+            app:destination="@id/filmsFragment"
+            app:popUpTo="@id/nav_graph"
+            app:popUpToInclusive="true"/>
+    </fragment>
 </navigation>

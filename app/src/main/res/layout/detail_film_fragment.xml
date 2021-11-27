@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="@dimen/margin_10dp">
+
+        <ImageView
+            android:id="@+id/film_image"
+            android:layout_width="@dimen/detail_image_width"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/ic_launcher"/>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_gravity="end"
+            android:gravity="center"
+            >
+
+            <TextView
+                android:id="@+id/film_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="English title"
+                android:textStyle="bold"
+                android:textSize="@dimen/detail_tv_size"
+                />
+
+            <TextView
+                android:id="@+id/film_year"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Год: 1987"
+                android:textStyle="bold"
+                android:textSize="@dimen/detail_tv_size"
+                android:layout_marginTop="@dimen/margin_10dp"
+                />
+
+            <TextView
+                android:id="@+id/film_rate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                tools:text="Рейтинг 4.02"
+                android:textStyle="bold"
+                android:textSize="@dimen/detail_tv_size"
+                android:layout_marginTop="@dimen/margin_10dp"
+                />
+
+        </LinearLayout>
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/film_description"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:textSize="@dimen/detail_description_tv_size"
+        android:layout_marginStart="@dimen/margin_10dp"
+        android:layout_marginEnd="@dimen/margin_10dp"
+        android:layout_marginTop="@dimen/margin_10dp"/>
+
+</LinearLayout>

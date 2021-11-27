@@ -2,9 +2,9 @@ package com.zinoview.tzfilmsapp.presentation
 
 import com.zinoview.tzfilmsapp.core.Abstract
 
-interface MapperDomainToUiFilm : Abstract.FilmMapper<UiFilm> {
+interface MapperToClickedFilm : Abstract.FilmMapper<ClickedFilm> {
 
-    class Base : MapperDomainToUiFilm {
+    class Base : MapperToClickedFilm {
 
         override fun map(
             id: Int,
@@ -15,10 +15,9 @@ interface MapperDomainToUiFilm : Abstract.FilmMapper<UiFilm> {
             imageUrl: String,
             description: String,
             genres: List<String>
-        ): UiFilm
-            = UiFilm.Base(
-                id, localizedName, name, year, rating, imageUrl, description, genres
+        ): ClickedFilm
+            = ClickedFilm.Base(
+                localizedName,name,year,rating,imageUrl,description
             )
-
     }
 }

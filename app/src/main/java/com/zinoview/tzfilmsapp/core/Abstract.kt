@@ -11,7 +11,7 @@ interface  Abstract {
 
         fun map(
             id: Int,
-            localized_name: String,
+            localizedName: String,
             name: String,
             year: Int,
             rating: Float,

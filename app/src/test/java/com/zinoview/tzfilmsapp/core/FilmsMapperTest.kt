@@ -103,6 +103,6 @@ class FilmsMapperTest {
     ) : BaseFilm {
 
         override fun <T> map(mapper: Abstract.FilmMapper<T>): T
-            = mapper.map(id,name = name,imageUrl =  imageUrl,localized_name = "",year = -1,rating = 4.0f,description = "",genres = emptyList())
+            = mapper.map(id,name = name,imageUrl =  imageUrl,localizedName = "",year = -1,rating = 4.0f,description = "",genres = emptyList())
     }
 }

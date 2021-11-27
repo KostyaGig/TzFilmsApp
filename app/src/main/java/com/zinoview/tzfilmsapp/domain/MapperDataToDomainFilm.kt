@@ -8,7 +8,7 @@ interface MapperDataToDomainFilm : Abstract.FilmMapper<DomainFilm> {
 
         override fun map(
             id: Int,
-            localized_name: String,
+            localizedName: String,
             name: String,
             year: Int,
             rating: Float,
@@ -17,7 +17,7 @@ interface MapperDataToDomainFilm : Abstract.FilmMapper<DomainFilm> {
             genres: List<String>
         ): DomainFilm
             = DomainFilm.Base(
-                id, localized_name, name, year, rating, imageUrl, description, genres
+                id, localizedName, name, year, rating, imageUrl, description, genres
             )
 
     }

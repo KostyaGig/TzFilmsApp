@@ -8,13 +8,16 @@ import androidx.recyclerview.widget.RecyclerView
 import com.zinoview.tzfilmsapp.databinding.FailureItemBinding
 import com.zinoview.tzfilmsapp.databinding.FilmItemBinding
 import com.zinoview.tzfilmsapp.databinding.ProgressItemBinding
+import com.zinoview.tzfilmsapp.presentation.ClickedFilm
 import com.zinoview.tzfilmsapp.presentation.state.UiStateFilm
 
 interface FilmsAdapter {
 
     fun update(newList: List<UiStateFilm>)
 
-    class Base : FilmsAdapter, RecyclerView.Adapter<Base.ViewHolder>() {
+    class Base(
+        private val onItemClickListener: OnItemClickListener<ClickedFilm>
+    ) : FilmsAdapter, RecyclerView.Adapter<Base.ViewHolder>() {
 
         private val users = ArrayList<UiStateFilm>()
 
@@ -55,7 +58,8 @@ interface FilmsAdapter {
                         LayoutInflater.from(parent.context),
                         parent,
                         false
-                    )
+                    ),
+                    onItemClickListener
                 )
                 else -> ViewHolder.Failure(
                     FailureItemBinding.inflate(
@@ -85,10 +89,15 @@ interface FilmsAdapter {
 
             class Base(
                 private val view: FilmItemBinding,
+                private val onItemClickListener: OnItemClickListener<ClickedFilm>
                 ) : ViewHolder(view.root) {
 
                 override fun bind(film: UiStateFilm) {
                     film.bind(view.filmImage,view.filmName)
+
+                    itemView.setOnClickListener {
+                        film.onItemClick(onItemClickListener)
+                    }
                 }
             }
             class Failure(private val view: FailureItemBinding) : ViewHolder(view.root) {

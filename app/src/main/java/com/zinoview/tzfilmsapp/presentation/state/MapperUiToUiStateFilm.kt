@@ -11,7 +11,7 @@ interface MapperUiToUiStateFilm : Abstract.FilmMapper<UiStateFilm> {
 
         override fun map(
             id: Int,
-            localized_name: String,
+            localizedName: String,
             name: String,
             year: Int,
             rating: Float,
@@ -20,7 +20,7 @@ interface MapperUiToUiStateFilm : Abstract.FilmMapper<UiStateFilm> {
             genres: List<String>
         ): UiStateFilm
             = UiStateFilm.Base(
-                id, localized_name, name,stringLengthMapper.map(name), year, rating, imageUrl, description, genres
+                id, localizedName, name,stringLengthMapper.map(name), year, rating, imageUrl, description, genres
             )
 
     }

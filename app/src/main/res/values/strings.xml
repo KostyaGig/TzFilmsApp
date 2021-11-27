@@ -3,4 +3,19 @@
     <string name="no_connection_text">No connection</string>
     <string name="some_went_wrong_text">Some went wrong</string>
     <string name="main_text">Главная</string>
+    <string name="genre_text">Жанры</string>
+    <string name="drama_text">Драма</string>
+    <string name="phantezy_text">Фэнтези</string>
+    <string name="melodrama_text">Мелодрама</string>
+    <string name="crime_text">Криминал</string>
+    <string name="detective_text">Детектив</string>
+    <string name="bio_text">Биография</string>
+    <string name="comedy_text">Комедия</string>
+    <string name="boevik_text">Боевик</string>
+    <string name="fantastic_text">Фантастика</string>
+    <string name="triller_text">Триллер</string>
+    <string name="adventures_text">Приключения</string>
+    <string name="musicl_text">Мюзикл</string>
+    <string name="horror_text">Ужасы</string>
+    <string name="films_text">Фильмы</string>
 </resources>

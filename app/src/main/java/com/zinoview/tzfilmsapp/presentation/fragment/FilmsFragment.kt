@@ -1,19 +1,19 @@
 package com.zinoview.tzfilmsapp.presentation.fragment
 
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.GridLayoutManager
 import com.zinoview.tzfilmsapp.R
+import com.zinoview.tzfilmsapp.core.ResourceProvider
 import com.zinoview.tzfilmsapp.databinding.FilmsFragmentBinding
 import com.zinoview.tzfilmsapp.presentation.ClickedFilm
+import com.zinoview.tzfilmsapp.presentation.FilmsWithCategories
 import com.zinoview.tzfilmsapp.presentation.LayoutManager
 import com.zinoview.tzfilmsapp.presentation.presenter.FilmsPresenter
 import com.zinoview.tzfilmsapp.presentation.adapter.FilmsAdapter
 import com.zinoview.tzfilmsapp.presentation.adapter.OnItemClickListener
 import com.zinoview.tzfilmsapp.presentation.core.BaseFragment
-import com.zinoview.tzfilmsapp.presentation.core.log
 import com.zinoview.tzfilmsapp.presentation.presenter.view.FilmsView
 import com.zinoview.tzfilmsapp.presentation.state.UiStateFilm
 import javax.inject.Inject
@@ -28,8 +28,14 @@ class FilmsFragment : BaseFragment(R.layout.films_fragment), FilmsView {
     @Inject
     lateinit var filmsPresenter: FilmsPresenter
 
+    @Inject
+    lateinit var resourceProvider: ResourceProvider
+
     private lateinit var adapter: FilmsAdapter.Base
     private lateinit var layoutManager: LayoutManager
+
+    private lateinit var filmsWithCategories: FilmsWithCategories
+    private lateinit var gridLayoutManager: GridLayoutManager
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -49,8 +55,18 @@ class FilmsFragment : BaseFragment(R.layout.films_fragment), FilmsView {
                 }
                 findNavController().navigate(R.id.action_filmsFragment_to_detailFilmFragment,bundle)
             }
+        }, object : OnItemClickListener<String> {
+            override fun onItemClick(item: String) {
+                filmsPresenter.films(item)
+                toolbar.title = resourceProvider.string(R.string.main_text) + "($item)"
+            }
         })
         binding.filmsRecView.adapter = adapter
+
+        filmsWithCategories = FilmsWithCategories.Base(resourceProvider)
+
+        gridLayoutManager = GridLayoutManager(requireContext(),2)
+        binding.filmsRecView.layoutManager = gridLayoutManager
     }
 
     override fun onStart() {
@@ -65,9 +81,17 @@ class FilmsFragment : BaseFragment(R.layout.films_fragment), FilmsView {
     }
 
     override fun updateState(films: List<UiStateFilm>) {
-        val first = films.first()
-        val layoutManager = layoutManager.layoutManager(requireContext(),first)
-        binding.filmsRecView.layoutManager = layoutManager
+            gridLayoutManager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+                override fun getSpanSize(position: Int): Int {
+                    return when(films[position]) {
+                        is UiStateFilm.Progress,
+                        is UiStateFilm.Failure,
+                        is UiStateFilm.Category,
+                        is UiStateFilm.Genre -> 2
+                        else -> 1
+                    }
+                }
+            }
         adapter.update(films)
     }
 

@@ -1,11 +1,9 @@
 package com.zinoview.tzfilmsapp.presentation.di.module
 
+import com.zinoview.tzfilmsapp.core.ResourceProvider
 import com.zinoview.tzfilmsapp.domain.FilmsInteractor
+import com.zinoview.tzfilmsapp.presentation.*
 import com.zinoview.tzfilmsapp.presentation.presenter.FilmsPresenter
-import com.zinoview.tzfilmsapp.presentation.MapperDomainToUiFilm
-import com.zinoview.tzfilmsapp.presentation.MapperDomainToUiFilms
-import com.zinoview.tzfilmsapp.presentation.Request
-import com.zinoview.tzfilmsapp.presentation.StringLengthMapper
 import com.zinoview.tzfilmsapp.presentation.state.MapperUiToUIStateFilms
 import com.zinoview.tzfilmsapp.presentation.state.MapperUiToUiStateFilm
 import dagger.Module
@@ -27,6 +25,7 @@ class UiModule {
     @Provides
     fun provideFilmsPresenter(
         filmsInteractor: FilmsInteractor,
+        resourceProvider: ResourceProvider,
         coroutineDispatcher: CoroutineDispatcher
     ) : FilmsPresenter {
         return FilmsPresenter.Base(
@@ -40,6 +39,7 @@ class UiModule {
                 )
             ),
             Request.Base(),
+            FilmsWithCategories.Base(resourceProvider),
             coroutineDispatcher
         )
     }

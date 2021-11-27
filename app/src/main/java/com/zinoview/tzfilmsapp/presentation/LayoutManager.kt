@@ -13,7 +13,9 @@ interface LayoutManager {
     class Base : LayoutManager {
 
         override fun layoutManager(context: Context,uiStateFilm: UiStateFilm) : RecyclerView.LayoutManager {
-            return if (uiStateFilm is UiStateFilm.Progress || uiStateFilm is UiStateFilm.Failure) {
+            return if (
+                uiStateFilm is UiStateFilm.Progress ||
+                uiStateFilm is UiStateFilm.Failure) {
                 LinearLayoutManager(context)
             } else {
                 GridLayoutManager(context, SPAN_COUNT)

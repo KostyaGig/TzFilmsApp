@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="@dimen/genre_width"
+    android:layout_height="40dp"
+    android:layout_margin="@dimen/margin_10dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/genre_item"
+    android:gravity="center"
+    >
+
+    <TextView
+        android:id="@+id/genre_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_gravity="center"
+        tools:text="Боевик"
+        android:textColor="@color/white"
+        android:textStyle="bold"/>
+
+</LinearLayout >

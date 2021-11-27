@@ -4,6 +4,7 @@ import com.zinoview.tzfilmsapp.R
 import com.zinoview.tzfilmsapp.core.ResourceProvider
 import retrofit2.HttpException
 import java.lang.IllegalArgumentException
+import java.net.SocketTimeoutException
 import java.net.UnknownHostException
 
 interface ExceptionMapper<T> {
@@ -19,7 +20,7 @@ interface ExceptionMapper<T> {
         override fun map(e: Exception): String {
             return when(e) {
                 is UnknownHostException -> resourceProvider.string(R.string.no_connection_text)
-                is HttpException -> resourceProvider.string(R.string.some_went_wrong_text)
+                is HttpException,is SocketTimeoutException -> resourceProvider.string(R.string.some_went_wrong_text)
                 else -> throw IllegalArgumentException("ExceptionMapper.Base not handle arg ${e.javaClass}, message ${e.message}")
             }
         }
@@ -27,7 +28,7 @@ interface ExceptionMapper<T> {
         override fun map(e: Throwable): String {
             return when(e) {
                 is UnknownHostException -> resourceProvider.string(R.string.no_connection_text)
-                is HttpException -> resourceProvider.string(R.string.some_went_wrong_text)
+                is HttpException,is SocketTimeoutException-> resourceProvider.string(R.string.some_went_wrong_text)
                 else -> throw IllegalArgumentException("ExceptionMapper.Base not handle arg ${e.javaClass}, message ${e.message}")
             }
         }
@@ -40,7 +41,7 @@ interface ExceptionMapper<T> {
         override fun map(e: Exception): String {
             return when(e) {
                 is UnknownHostException -> resourceProvider.string(R.string.no_connection_text)
-                is HttpException -> resourceProvider.string(R.string.some_went_wrong_text)
+                is HttpException,is SocketTimeoutException -> resourceProvider.string(R.string.some_went_wrong_text)
                 else -> throw IllegalArgumentException("ExceptionMapper.Base not handle arg ${e.javaClass}")
             }
         }

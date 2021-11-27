@@ -30,7 +30,6 @@ class DetailFilmFragment : BaseFragment(R.layout.detail_film_fragment) {
 
         requireActivity().onBackPressedDispatcher.addCallback(viewLifecycleOwner,object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                log("handleOnBackPressed")
                 findNavController().navigate(R.id.action_detailFilmFragment_to_filmsFragment)
             }
         })

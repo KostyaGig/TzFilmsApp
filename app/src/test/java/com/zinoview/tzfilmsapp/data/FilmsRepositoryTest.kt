@@ -12,7 +12,7 @@ import org.junit.Before
 import org.junit.Test
 
 
-class UsersRepositoryTest {
+class FilmsRepositoryTest {
 
     private lateinit var repository: FilmsRepository<DataFilms>
 
